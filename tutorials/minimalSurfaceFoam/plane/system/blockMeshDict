@@ -1,0 +1,99 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  12
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+convertToMeters 1;
+
+geometry
+{
+    Cylinder
+    {
+        type searchableCylinder;
+        radius 1;
+        point1 (0.5 0.5 -100);
+        point2 (0.5 0.5 100);
+    }
+}
+
+vertices
+(
+    name v0 project (0 0 0)      (Cylinder)  
+    name v1 project (1 0 0)      (Cylinder)
+    name v2 project (1 1 0)      (Cylinder)
+    name v3 project (0 1 0)      (Cylinder)
+    name v4 project (0 0 0.01)    (Cylinder)
+    name v5 project (1 0 0.01)    (Cylinder)
+    name v6 project (1 1 0.01)    (Cylinder)
+    name v7 project (0 1 0.01)    (Cylinder)
+);
+
+blocks
+(
+    hex (0 1 2 3 4 5 6 7) (20 20 1) simpleGrading (1 1 1)
+);
+
+edges
+(
+    project v0 v1 (Cylinder)
+    project v1 v2 (Cylinder)
+    project v2 v3 (Cylinder)
+    project v3 v0 (Cylinder)
+    project v4 v5 (Cylinder)
+    project v5 v6 (Cylinder)
+    project v6 v7 (Cylinder)
+    project v7 v4 (Cylinder)
+);
+
+boundary
+(
+    movingWall
+    {
+        type wall;
+        faces
+        (
+            (3 7 6 2)
+        );
+    }
+    fixedWalls
+    {
+        type wall;
+        faces
+        (
+            (0 4 7 3)
+            (2 6 5 1)
+            (1 5 4 0)
+        );
+    }
+    front
+    {
+        type empty;
+        faces
+        (
+            //(0 3 2 1)
+            (4 5 6 7)
+        );
+    }
+    back
+    {
+        type empty;
+        faces
+        (
+            (0 3 2 1)
+            //(4 5 6 7)
+        );
+    }
+);
+
+
+// ************************************************************************* //

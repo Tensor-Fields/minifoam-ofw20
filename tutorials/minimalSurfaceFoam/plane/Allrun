@@ -1,0 +1,7 @@
+#!/bin/bash
+
+blockMesh
+
+transformPoints "translate=(-0.05 -0.05 0)"
+
+minimalSurfaceFoam

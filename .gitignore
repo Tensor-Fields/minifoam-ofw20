@@ -1,0 +1,40 @@
+# .dep files
+**/test/**/*.dep
+**/*.dep
+
+# .o files
+**/test/**/*.o
+**/*.o
+
+# .so files (dynamic libraries)
+**/test/**/*.so
+**/*.so
+
+# VIM related metadata
+**/test/**/*.vim
+**/test/**/*.swp
+**/*.vim
+**/*.swp
+
+# directories with 'linux' in their names.
+# directories with 'test' or 'Test' in their names.
+**/test/**/*linux*
+**/*linux*
+#test/**/*test*
+#test/**/*Test*
+
+# binary directories (containing, e.g., *.so files)
+**/test/**/bin/*
+**/bin/*
+
+# large directories (and obviously their content)
+#test/myBekaert-v2.0
+
+# test case without run-time generated files
+
+# QUIRK: Files ignored by directory, cannot be negated!
+**/test/**/*
+#!**/test/**/0/
+#!**/test/**/constant/
+#!**/test/**/system/
+#**/test/**/polyMesh/
