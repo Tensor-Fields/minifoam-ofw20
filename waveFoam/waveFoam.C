@@ -25,7 +25,7 @@ Application
     waveFoam
 
 Description
-    Solves wave equation.
+    Solves the wave equation.
 
 Author
     Maalik (ali@tensorfields.com), Blue Room, UCD, Dublin, Ireland
